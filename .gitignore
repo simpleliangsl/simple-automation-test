@@ -1,0 +1,14 @@
+*.iml
+*.ipr
+*.iws
+*.log
+.classpath
+.project
+target/
+build/
+logs/
+node*/
+.idea/
+.gradle/
+.npmrc
+.gradletasknamecache

@@ -1,0 +1,25 @@
+sourceSets {
+    autoTest {
+        java.srcDir file('src/autotest/java')
+        resources.srcDirs file('src/autotest/resources')
+    }
+}
+
+dependencies {
+    autoTestCompile group: 'org.testng', name: 'testng', version: '6.8.8'
+    autoTestCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
+    autoTestCompile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+    autoTestCompile group: 'org.apache.commons', name: 'commons-text', version: '1.1'
+}
+
+task autoTest(type: Test) {
+    useTestNG()
+    include '**/*Test.class'
+
+    testClassesDir = sourceSets.autoTest.output.classesDir
+    classpath = sourceSets.autoTest.runtimeClasspath
+
+    maxParallelForks = 1
+
+    systemProperties System.properties
+}
