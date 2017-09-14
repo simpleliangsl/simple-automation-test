@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class GoogleTranslatePageTest extends BasicTestManager {
 
     @Test
-    public void pageLoadingTest(){
+    public void googleTranslateTest(){
 
         /* Set up Test Data Here (read from configurations) */
 
@@ -22,8 +22,8 @@ public class GoogleTranslatePageTest extends BasicTestManager {
         GoogleTranslatePage page = new GoogleTranslatePage(browser);
         page.go();
 
-        // step 2: input text "Hello Dolores!"
-        page.inputText("Hello Dolores!");
+        // step 2: input text "Hello Dolores, Welcome to the World"
+        page.inputText("Hello Dolores, Welcome to the World");
 
         // step 3: auto detect source language
         page.detectLanguage();
@@ -35,6 +35,6 @@ public class GoogleTranslatePageTest extends BasicTestManager {
 
         // finally verify translated result
         SysUtil.waitTime(2); // wait 2 seconds
-        Assert.assertEquals(page.getResult(), "你好多洛雷斯", "Translation is incorrect");
+        Assert.assertEquals(page.getResult(), "多洛雷斯，欢迎来到世界", "Translation is incorrect");
     }
 }

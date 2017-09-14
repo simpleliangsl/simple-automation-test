@@ -41,10 +41,10 @@ public class ZzzSampleTest {
         // 1. go to google translate page
         browser.get("https://translate.google.cn/");
 
-        // 2. input text "Hello Dolores!" in 2 seconds
+        // 2. input text "Hello Dolores, Welcome to the World" in 2 seconds
         WebDriverWait waitUtil = new WebDriverWait(browser, 2);
         WebElement sourceInput = waitUtil.until(ExpectedConditions.visibilityOfElementLocated(By.id("source")));
-        sourceInput.sendKeys("Hello Dolores!");
+        sourceInput.sendKeys("Hello Dolores, Welcome to the World");
 
         // 3. auto detect source language
         WebElement sourceDetect = browser.findElement(By.xpath("//div[@id='gt-sl-sugg']/div[@value='auto']"));
@@ -62,6 +62,6 @@ public class ZzzSampleTest {
         // finally verify translated result
         try {Thread.sleep(2000);} catch(InterruptedException e){} // wait 2 seconds
         WebElement resultBox = browser.findElement(By.id("result_box"));
-        Assert.assertEquals(resultBox.getText(), "你好多洛雷斯", "Translation is incorrect");
+        Assert.assertEquals(resultBox.getText(), "多洛雷斯，欢迎来到世界", "Translation is incorrect");
     }
 }
