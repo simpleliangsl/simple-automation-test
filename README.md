@@ -66,22 +66,27 @@ Both IDE and command line can generate test reports under project **root/build/r
  
 **[What Is a Good Test Case]**
 
-A good test case could be Stable (liable), Small and Straightforward. 
-Stable: A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf who nobody trusts. Most of time test data is the main problem. If test data issue makes a test case impossible to be stable, please skip that case.
-Small: Don't put too much test points into a test case, follow The Single Responsibility Principle. One case, One thing. 10 test points into 1 case, the case may always fail because of multiple causes, then we waste more time to find it out. 10 test points into 10 cases, the read cases clearly tell us which parts are bad and the green cases directly tell us which parts are healthy, but we have more cases to maintain. If we just put relative test points into a test case, for example, 10 test points into 3 cases, that would be better. How many test cases needed, the balance is not easy.
+A good test case could be Stable (liable), Small and Straightforward.
+
+**Stable**: A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf who nobody trusts. Most of time test data is the main problem. If test data issue makes a test case impossible to be stable, please skip that case.
+
+**Small**: Don't put too much test points into a test case, follow The Single Responsibility Principle. One case, One thing. 10 test points into 1 case, the case may always fail because of multiple causes, then we waste more time to find it out. 10 test points into 10 cases, the read cases clearly tell us which parts are bad and the green cases directly tell us which parts are healthy, but we have more cases to maintain. If we just put relative test points into a test case, for example, 10 test points into 3 cases, that would be better. How many test cases needed, the balance is not easy.
 10 Test Points in Test Cases	Failed Test Cases	Pass Rate
 All in One	X	0% (What is wrong?)
 One per One	X	V	V	V	V	V	V	V	V	V	90% (The wrong parts are clear, but there are so many test cases to maintained)
 Grouped Relatively	X	V	V	67% (Relieve the pain by grouping test points into relative test cases)
-Straightforward: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... 
+
+**Straightforward**: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... 
 
 **[Test Types]**
-Unit Testing vs Integration Testing (Manual Testing, Automation Testing)
 
-Comparing to atom of ordinary matter, method (function) is the small constituent unit of software system, so unit testing about methods. Unit testing is white-box testing where we can see the implement details of how it works: varibles, operations, branch flow and loop flow. Usually the quality of unit testing is mearused by code line coverage and branch coverage, but actually how many asserts based on funcitons are more important. Theorially Unit tests can go through all lines of code (code line coverage 100%) and all branches (branch coverage 100%), but have no any assertions (test points 0%). All those tests are always green, they are rubbish.
+**Unit Testing** vs **Integration Testing** (Manual Testing, Automation Testing)
 
-Unlike unit testing, integration testing is black-box testing where the individual modules are combined as a integrated sytem. We treat the whole system as a input-output box in high level. It could be manual or automated.
-Considering Cost-Benift Principle, unit testing is more and more important since it is very easy to implement technically (e.g. test data stubbing, mocking, sppying...) while integration testing is very complicated to achieve the same effect. Unit testing is Stable, Small and Straightforward as it has no test data issue. Integration testing is usually blocked by test data problem. System Complexity and Data Issue makes integration testing fragile. In some software organizations, they let unit testing take more responsibilities instead of integration testing. They call it Test Pyramid, which really helps to build CI/CD Pipeline for Agile Development.
+Comparing to atom of ordinary matter, **method (function)** is the small constituent **unit of software system**, so unit testing about methods. **Unit testing** is **white-box testing** where we can see the implement details of how it works: varibles, operations, branch flow and loop flow. Usually the quality of unit testing is mearused by **code line coverage** and **branch coverage**, but actually how many **assertions** based on funcitons are more important. Theorially Unit tests can go through all lines of code (code line coverage 100%) and all branches (branch coverage 100%), but have no any assertions (test points 0%). All those tests are always green, they are rubbish.
+
+Unlike unit testing, **integration testing** is **black-box testing** where the individual modules are combined as a **integrated system**. We treat the whole system as a **input-output box** in high level. It could be **manual** or **automated**.
+
+Considering **Cost-Benift Principle**, unit testing is more and more important since it is very easy to implement technically (e.g. test data stubbing, mocking, sppying...) while integration testing is very complicated to achieve the same effect. Unit testing is Stable, Small and Straightforward as it has no test data issue. Integration testing is usually blocked by test data problem. System Complexity and Data Issue makes integration testing fragile. In some software organizations, they let unit testing take more responsibilities instead of integration testing. They call it **Test Pyramid**, which really helps to build **CI/CD Pipeline** for Agile Development.
 ![basic-test-concept-H2O](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-H2O.png "basic-test-concept-H2O")
 ![basic-test-concept-test-type](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-test-type.png "basic-test-concept-test-type")
 
