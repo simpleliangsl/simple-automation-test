@@ -1,6 +1,8 @@
 # simple-automation-test
 There is a complete example GoogleTranslatePageTest to tell how to write automation test. Following this example, you could try finishing exercise BingTranslatePageTest.
 
+**[Code Structure]**
+
 **Class Diagram** describes the relationships in **System Classes**, **Selenium Classes** and **Simple Automation Test Classes**. Selenium supplies 1) **WebDriver** to manage web browers, 2) **WebElement** to find web elements on page, 3) **WebDriverWait** to find web elements until time out. Simple Automation Test has 1) **Config** to get test data from configurations, 2) **Web Page Models** to perform actions on pages, 3) **Assertions** to verify actual result == expected value
 ![simple-automation-test-class-diagram](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-class-diagram.png "simple-automation-test-class-diagram")
 
