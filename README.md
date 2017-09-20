@@ -46,25 +46,26 @@ Both IDE and command line can generate test reports under project **root/build/r
 **Test** is to **Verify** **Actual Result** meets **Expected Result** when doing **Actions** in conditions (described as **Test Data**). The model of test case could be simplied as **`Action(Data) → Actual = Expected`**: 1) **`Precondition`**: set up test data  2) **`Perform`** actions 3) **`Postcondition`**: verify acutal result = expected result. Also we could format the words like **`When... Do... Then...`**
 
 **Test Case**: **when** the light is off, **switch** it on, **then** it will be on.  
-&emsp;&emsp;**Precondition**: light is off  
-&emsp;&emsp;**Actions**: switch on it  
-&emsp;&emsp;**Postcondition**: it will be on  
+&emsp;&emsp;**`Precondition`**: light is off  
+&emsp;&emsp;**`Actions`**: switch on it  
+&emsp;&emsp;**`Postcondition`**: it will be on  
 
-Test Case: when the weather is rainy, open the umbrella, then I should not get wet.  
-&emsp;&emsp;Precondition: weather is rainy  
-&emsp;&emsp;Actions: open umbrella  
-&emsp;&emsp;Postcondition: I will not get wet  
+**Test Case**: **when** the weather is rainy, **open** the umbrella, **then** I should not get wet.  
+&emsp;&emsp;**`Precondition`**: weather is rainy  
+&emsp;&emsp;**`Actions`**: open umbrella  
+&emsp;&emsp;**`Postcondition`**: I will not get wet  
 
-Test Case: when Google Translate is accessible, input "Hello Dolores, Welcome to the World" and select Chinese as target language, then result will be "多洛雷斯，欢迎来到世界".  
-&emsp;&emsp;Precondition: Google Translate is accessible  
-&emsp;&emsp;Actions:  
-&emsp;&emsp;&emsp;&emsp;Step 1: go to web page: https://translate.google.cn  
-&emsp;&emsp;&emsp;&emsp;Step 2: input "Hello Dolores, Welcome to the World"  
-&emsp;&emsp;&emsp;&emsp;Step 3: select Chinese 中文 in target langue menu  
-&emsp;&emsp;&emsp;&emsp;Step 4: wait 1 or 2 seconds  
-&emsp;&emsp;Postcondition: the result box will show "多洛雷斯，欢迎来到世界"  
+**Test Case**: **when** Google Translate is accessible, **input** "Hello Dolores, Welcome to the World" and **select** Chinese as target language, then result will be "多洛雷斯，欢迎来到世界".  
+&emsp;&emsp;**`Precondition`**: Google Translate is accessible  
+&emsp;&emsp;**`Actions`**:  
+&emsp;&emsp;&emsp;&emsp;**Step 1**: go to web page: https://translate.google.cn  
+&emsp;&emsp;&emsp;&emsp;**Step 2**: input "Hello Dolores, Welcome to the World"  
+&emsp;&emsp;&emsp;&emsp;**Step 3**: select Chinese 中文 in target langue menu  
+&emsp;&emsp;&emsp;&emsp;**Step 4**: wait 1 or 2 seconds  
+&emsp;&emsp;**`Postcondition`**: the result box will show "多洛雷斯，欢迎来到世界"  
  
-[What Is a Good Test Case]
+**[What Is a Good Test Case]**
+
 A good test case could be Stable (liable), Small and Straightforward. 
 Stable: A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf who nobody trusts. Most of time test data is the main problem. If test data issue makes a test case impossible to be stable, please skip that case.
 Small: Don't put too much test points into a test case, follow The Single Responsibility Principle. One case, One thing. 10 test points into 1 case, the case may always fail because of multiple causes, then we waste more time to find it out. 10 test points into 10 cases, the read cases clearly tell us which parts are bad and the green cases directly tell us which parts are healthy, but we have more cases to maintain. If we just put relative test points into a test case, for example, 10 test points into 3 cases, that would be better. How many test cases needed, the balance is not easy.
@@ -74,12 +75,15 @@ One per One	X	V	V	V	V	V	V	V	V	V	90% (The wrong parts are clear, but there are so
 Grouped Relatively	X	V	V	67% (Relieve the pain by grouping test points into relative test cases)
 Straightforward: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... 
 
-[Test Types]
+**[Test Types]**
 Unit Testing vs Integration Testing (Manual Testing, Automation Testing)
+
 Comparing to atom of ordinary matter, method (function) is the small constituent unit of software system, so unit testing about methods. Unit testing is white-box testing where we can see the implement details of how it works: varibles, operations, branch flow and loop flow. Usually the quality of unit testing is mearused by code line coverage and branch coverage, but actually how many asserts based on funcitons are more important. Theorially Unit tests can go through all lines of code (code line coverage 100%) and all branches (branch coverage 100%), but have no any assertions (test points 0%). All those tests are always green, they are rubbish.
+
 Unlike unit testing, integration testing is black-box testing where the individual modules are combined as a integrated sytem. We treat the whole system as a input-output box in high level. It could be manual or automated.
 Considering Cost-Benift Principle, unit testing is more and more important since it is very easy to implement technically (e.g. test data stubbing, mocking, sppying...) while integration testing is very complicated to achieve the same effect. Unit testing is Stable, Small and Straightforward as it has no test data issue. Integration testing is usually blocked by test data problem. System Complexity and Data Issue makes integration testing fragile. In some software organizations, they let unit testing take more responsibilities instead of integration testing. They call it Test Pyramid, which really helps to build CI/CD Pipeline for Agile Development.
-
+![basic-test-concept-H2O](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-H2O.png "basic-test-concept-H2O")
+![basic-test-concept-test-type](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-test-type.png "basic-test-concept-test-type")
 
 Wikipedia: https://en.wikipedia.org/wiki/Functional_testing
 Smoke testing
