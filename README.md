@@ -1,5 +1,5 @@
 # simple-automation-test
-There is a complete example GoogleTranslatePageTest to tell how to write automation test. Following this example, you could try finishing exercise BingTranslatePageTest.
+The source code includes a complete example GoogleTranslatePageTest to tell how to write automation test case. Following this example, you could try finishing exercise BingTranslatePageTest.
 
 **[Code Structure]**
 
@@ -12,7 +12,7 @@ Automation web test root "**autotest/web**" includes 3 packages: 1) **common** f
 Below is an ugly version of googleTranslateTest() in class ZzzSampleTest, which directly uses Selenium without information encapsulation. Actually it works. Comparing with the refined version above, it exposes so much implement details that it is pretty hard to read, understand, reuse and maintain.
 ![simple-automation-rough-test-case](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-rough-test-case.png "simple-automation-rough-test-case")
 
-A **web page model**: 1) defines a serial of methods to **find web elments**. Usually speaking, there are 3 ways to find a web element: **By.id**, **By.className** and **By.xpath**. Please firstly consider By.id or By.className for high accuracy and convenience even though By.xpath is more powerful. You may see more ways to find elements such as By.linkText, By.partialLinkText, By.name, By.tagName, By.cssSelector in official Selenium docs. 2) defines **go()** method. 3) defines a serial of methods to **perform actions** on page.
+A **web page model**: 1) defines a serial of methods to **find web elments**. Usually speaking, there are 3 ways to find a web element: **By.id**, **By.className** and **By.xpath**. _`Please firstly consider By.id or By.className for high accuracy and convenience even though By.xpath is more powerful. You may see more ways to find elements such as By.linkText, By.partialLinkText, By.name, By.tagName, By.cssSelector in official Selenium docs.`_ 2) defines **go()** method. 3) defines a serial of methods to **perform actions** on page.
 ![simple-automation-test-web-page-model](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-web-page-model.png "simple-automation-test-web-page-model")
 
 Test data in **configurations** ("key=value" pairs)
@@ -71,12 +71,41 @@ A good test case could be Stable (liable), Small and Straightforward.
 **Stable**: A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf who nobody trusts. Most of time test data is the main problem. If test data issue makes a test case impossible to be stable, please skip that case.
 
 **Small**: Don't put too much test points into a test case, follow The Single Responsibility Principle. One case, One thing. 10 test points into 1 case, the case may always fail because of multiple causes, then we waste more time to find it out. 10 test points into 10 cases, the read cases clearly tell us which parts are bad and the green cases directly tell us which parts are healthy, but we have more cases to maintain. If we just put relative test points into a test case, for example, 10 test points into 3 cases, that would be better. How many test cases needed, the balance is not easy.
-10 Test Points in Test Cases	Failed Test Cases	Pass Rate
-All in One	X	0% (What is wrong?)
-One per One	X	V	V	V	V	V	V	V	V	V	90% (The wrong parts are clear, but there are so many test cases to maintained)
-Grouped Relatively	X	V	V	67% (Relieve the pain by grouping test points into relative test cases)
 
-**Straightforward**: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... 
+10 Test Points in Test Cases | Failed Test Cases | Pass Rate
+--- | --- | ---
+All in One | `X` | 0% (What is wrong?)
+One per One | `X`	V	V	V	V	V	V	V	V	V | 90% (The wrong parts are clear, but there are so many test cases to maintained)
+Grouped Relatively | `X`	V	V | 67% (Relieve the pain by grouping test points into relative test cases)
+
+**Straightforward**: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... **There should be nothing ambiguous**. See examples below:
+
+**Test Case**: when Google Translate is accessible, input "Hello Dolores, Welcome to the World" and select Chinese as target language, then result will be "多洛雷斯，欢迎来到世界".  
+&emsp;&emsp;**Precondition**: Google Translate is accessible  
+&emsp;&emsp;**Actions**:  
+&emsp;&emsp;&emsp;&emsp;**Step 1**: go to web page: https://translate.google.cn  
+&emsp;&emsp;&emsp;&emsp;**Step 2**: input "Hello Dolores, Welcome to the World"  
+&emsp;&emsp;&emsp;&emsp;**Step 3**: select Chinese 中文 in target langue menu  
+&emsp;&emsp;&emsp;&emsp;**Step 4**: wait 1 or 2 seconds  
+&emsp;&emsp;**Postcondition**: the result box will show "多洛雷斯，欢迎来到世界"
+
+**`Not` Test Case**: when Google Translate is accessible, input any text in English and choose any other target language, then result will be as expected  
+&emsp;&emsp;**Precondition**: Google Translate is accessible  
+&emsp;&emsp;**Actions**:  
+&emsp;&emsp;&emsp;&emsp;**Step 1**: go to `Google Translate page`  
+&emsp;&emsp;&emsp;&emsp;**Step 2**: input `any text` in English  
+&emsp;&emsp;&emsp;&emsp;**Step 3**: choose `any other` target language  
+&emsp;&emsp;&emsp;&emsp;**Step 4**: wait `a moment`  
+&emsp;&emsp;**Postcondition**: the result box will be `as expected`  
+
+**`Not` Test Case**: when Google Translate is accessible, input random text in English and choose French as target language, then result will be as expected  
+&emsp;&emsp;**Precondition**: Google Translate is accessible  
+&emsp;&emsp;**Actions**:  
+&emsp;&emsp;&emsp;&emsp;**Step 1**: go to https://translate.google.com `if` it is accessible, `else` try https://translate.google.cn  
+&emsp;&emsp;&emsp;&emsp;**Step 2**: input `random text` ("Hello Dolores", "Hi Arnold", "Everything happens for a reason")  
+&emsp;&emsp;&emsp;&emsp;**Step 3**: choose French in target langue menu  
+&emsp;&emsp;&emsp;&emsp;**Step 4**: wait `until` the result is changed  
+&emsp;&emsp;**Postcondition**: the result box will be `as expected` ("Bonjour Dolores", "Bonjour Arnold", or "Tout arrive pour une raison")  
 
 **[Test Types]**
 
@@ -90,10 +119,10 @@ Considering **Cost-Benift Principle**, unit testing is more and more important s
 ![basic-test-concept-H2O](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-H2O.png "basic-test-concept-H2O")
 ![basic-test-concept-test-type](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-test-type.png "basic-test-concept-test-type")
 
-Wikipedia: https://en.wikipedia.org/wiki/Functional_testing
-Smoke testing
-Sanity testing
-Acceptance testing
-Integration testing
-Unit testing
-Regression testing
+Wikipedia: https://en.wikipedia.org/wiki/Functional_testing  
+* [Smoke testing](https://en.wikipedia.org/wiki/Smoke_testing_(software))  
+* [Sanity testing](https://en.wikipedia.org/wiki/Sanity_testing)  
+* [Acceptance testing](https://en.wikipedia.org/wiki/Acceptance_testing)  
+* [Integration testing](https://en.wikipedia.org/wiki/Integration_testing)  
+* [Unit testing](https://en.wikipedia.org/wiki/Unit_testing)  
+* [Regression testing](https://en.wikipedia.org/wiki/Regression_testing)  
