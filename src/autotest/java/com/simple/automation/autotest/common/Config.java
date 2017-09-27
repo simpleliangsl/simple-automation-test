@@ -1,4 +1,4 @@
-package com.simple.automation.autotest.web.common;
+package com.simple.automation.autotest.common;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

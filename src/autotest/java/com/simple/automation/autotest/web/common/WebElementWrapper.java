@@ -1,5 +1,7 @@
 package com.simple.automation.autotest.web.common;
 
+import com.simple.automation.autotest.common.Config;
+import com.simple.automation.autotest.common.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;

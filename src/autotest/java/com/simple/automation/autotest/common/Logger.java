@@ -1,4 +1,4 @@
-package com.simple.automation.autotest.web.common;
+package com.simple.automation.autotest.common;
 
 import org.joda.time.DateTime;
 

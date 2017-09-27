@@ -1,6 +1,6 @@
 package com.simple.automation.autotest.web.page;
 
-import com.simple.automation.autotest.web.common.Config;
+import com.simple.automation.autotest.common.Config;
 import com.simple.automation.autotest.web.common.WebDriverWrapper;
 import com.simple.automation.autotest.web.common.WebElementWrapper;
 import org.openqa.selenium.By;

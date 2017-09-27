@@ -1,6 +1,8 @@
 package com.simple.automation.autotest.web.common;
 
+import com.simple.automation.autotest.common.Config;
 import com.simple.automation.autotest.common.Context;
+import com.simple.automation.autotest.common.Logger;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.text.StrSubstitutor;
@@ -11,7 +13,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
