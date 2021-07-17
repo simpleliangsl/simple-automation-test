@@ -1,7 +1,7 @@
 # simple-automation-test
 The source code includes a complete example GoogleTranslatePageTest to tell how to write automation test case. Following this example, you could try finishing exercise BingTranslatePageTest.
 
-**[Code Structure]**
+> ## Code Structure
 
 **Class Diagram** describes the relationships in **System Classes**, **Selenium Classes** and **Simple Automation Test Classes**. Selenium supplies 1) **WebDriver** to manage web browers, 2) **WebElement** to find web elements on page, 3) **WebDriverWait** to find web elements until time out. Simple Automation Test has 1) **Config** to get test data from configurations, 2) **Web Page Models** to perform actions on pages, 3) **Assertions** to verify actual result == expected value
 ![simple-automation-test-class-diagram](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-class-diagram.png "simple-automation-test-class-diagram")
@@ -18,7 +18,7 @@ A **web page model**: 1) defines a serial of methods to **find web elments**. Us
 Test data in **configurations** ("key=value" pairs)
 ![simple-automation-test-configurations](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-configurations.png "simple-automation-test-configurations")
  
-**[Run Automation Test]**
+> ## Run Automation Test
 1. **Run in IDE** (Intellij IEDA, Eclipse...): right click the test case name (marked as "**@Test**"), or the class name, then choose "**Run...**"
 ![simple-automation-test-run-in-IDE](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-run-in-IDE.png "simple-automation-test-run-in-IDE")
 
@@ -39,7 +39,7 @@ Both IDE and command line can generate test reports under project **root/build/r
 ![basic-test-concept-pipeline](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-pipeline.png "basic-test-concept-pipeline")
 
 
-# Useful Basic Test Concept
+> ## Useful Basic Test Concept
 
 **[What Is Test]**
 
