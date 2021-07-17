@@ -1,24 +1,31 @@
 # simple-automation-test
 The source code includes a complete example GoogleTranslatePageTest to tell how to write automation test case. Following this example, you could try finishing exercise BingTranslatePageTest.
 
-> ## Code Structure
+&#x1F532; **How to Write - [Code Structure](#code-structure):** [Class Diagram](#class-diagram), [A Test Case](#a-test-case), and [Web Page Model](#web-page-model)  
+&#x1F532; **How to Play - [Run Test Cases](#run-test-cases):** [In IDE](#run-in-ide) or [In Commandline](#run-in-commandline)    
+&#x1F532; **How to Think - [Basic Test Concepts](#basic-test-concepts):** [What Is Test](#what-is-test), [What Is a Good Test Case](#what-is-a-good-test-case) and [Test Types](#test-types)
 
+> ## Code Structure
+> ### Class Diagram
 **Class Diagram** describes the relationships in **System Classes**, **Selenium Classes** and **Simple Automation Test Classes**. Selenium supplies 1) **WebDriver** to manage web browers, 2) **WebElement** to find web elements on page, 3) **WebDriverWait** to find web elements until time out. Simple Automation Test has 1) **Config** to get test data from configurations, 2) **Web Page Models** to perform actions on pages, 3) **Assertions** to verify actual result == expected value
 ![simple-automation-test-class-diagram](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-class-diagram.png "simple-automation-test-class-diagram")
 
-Automation web test root "**autotest/web**" includes 3 packages: 1) **common** for commont tools, 2) **page** for web page models, 3) **test** for all test cases. **A test class** has name **WebPageName + "Test"**. _`As we mentioned in` [Useful Basic Test Concept](#useful-basic-test-concept)`, a good test case should be Small, Straightforward and Stable. A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf. Automation test is not silver bullet, so don't make things complicated, keep them simple.`_ **A test case** could be simplified as 3 parts: 1) **precondition**: set up test data from configurations, 2) **perform** actions by web page models, 3) **postcondition**: verify acutal result == expected value by Assertions
+> ### A Test Case
+Automation web test root "**autotest/web**" includes 3 packages: 1) **common** for commont tools, 2) **page** for web page models, 3) **test** for all test cases. **A test class** has name **WebPageName + "Test"**. _`As we mentioned in` [Basic Test Concepts](#basic-test-concepts)`, a good test case should be Small, Straightforward and Stable. A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf. Automation test is not silver bullet, so don't make things complicated, keep them simple.`_ **A test case** could be simplified as 3 parts: 1) **precondition**: set up test data from configurations, 2) **perform** actions by web page models, 3) **postcondition**: verify acutal result == expected value by Assertions
 ![simple-automation-test-code-structure](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-code-structure.png "simple-automation-test-code-structure")
 
 Below is an ugly version of googleTranslateTest() in class ZzzSampleTest, which directly uses Selenium without information encapsulation. Actually it works. Comparing with the refined version above, it exposes so much implement details that it is pretty hard to read, understand, reuse and maintain.
 ![simple-automation-rough-test-case](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-rough-test-case.png "simple-automation-rough-test-case")
 
+> ### Web Page Model
 A **web page model**: 1) defines a serial of methods to **find web elments**. Usually speaking, there are 3 ways to find a web element: **By.id**, **By.className** and **By.xpath**. _`Please firstly consider By.id or By.className for high accuracy and convenience even though By.xpath is more powerful. You may see more ways to find elements such as By.linkText, By.partialLinkText, By.name, By.tagName, By.cssSelector in official Selenium docs.`_ 2) defines **go()** method. 3) defines a serial of methods to **perform actions** on page.
 ![simple-automation-test-web-page-model](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-web-page-model.png "simple-automation-test-web-page-model")
 
 Test data in **configurations** ("key=value" pairs)
 ![simple-automation-test-configurations](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-configurations.png "simple-automation-test-configurations")
  
-> ## Run Automation Test
+> ## Run Test Cases
+> ### Run in IDE
 1. **Run in IDE** (Intellij IEDA, Eclipse...): right click the test case name (marked as "**@Test**"), or the class name, then choose "**Run...**"
 ![simple-automation-test-run-in-IDE](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-run-in-IDE.png "simple-automation-test-run-in-IDE")
 
@@ -28,7 +35,8 @@ You also can edit **VM options** in Run/Debug Configitions: **-DautoConfig=qa** 
 Test Case on Google Translate page: https://translate.google.cn
 ![simple-automation-test-screenshot](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-screenshot.png "simple-automation-test-screenshot")
 
-2. **Run by command line** under project root directory: **./gradlew autoTest -DautoConfig=qa**
+> ### Run in Commandline
+2. **Run in commandline** under project root directory: **./gradlew autoTest -DautoConfig=qa**
 ![simple-automation-test-run-in-command-line](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/simple-automation-test-run-in-command-line.png "simple-automation-test-run-in-command-line")
  
 Both IDE and command line can generate test reports under project **root/build/reports**:
@@ -39,10 +47,9 @@ Both IDE and command line can generate test reports under project **root/build/r
 ![basic-test-concept-pipeline](https://raw.githubusercontent.com/simpleliangsl/simple-automation-test/master/readme/basic-test-concept-pipeline.png "basic-test-concept-pipeline")
 
 
-> ## Useful Basic Test Concept
+> ## Basic Test Concepts
 
-**[What Is Test]**
-
+> ### What Is Test
 **Test** is to **Verify** **Actual Result** meets **Expected Result** when doing **Actions** in conditions (described as **Test Data**). The model of test case could be simplied as **`Action(Data) → Actual = Expected`**: 1) **`Precondition`**: set up test data  2) **`Perform`** actions 3) **`Postcondition`**: verify acutal result = expected result. Also we could format the words like **`When... Do... Then...`**
 
 **Test Case**: **when** the light is off, **switch** it on, **then** it will be on.  
@@ -64,8 +71,7 @@ Both IDE and command line can generate test reports under project **root/build/r
 &emsp;&emsp;&emsp;&emsp;**Step 4**: wait 1 or 2 seconds  
 &emsp;&emsp;**`Postcondition`**: the result box will show "多洛雷斯，欢迎来到世界"  
  
-**[What Is a Good Test Case]**
-
+> ### What Is a Good Test Case
 A good test case could be Stable (liable), Small and Straightforward.
 
 **Stable**: A liable test case fails only when there are product defects, or it should be always green. Don't let it be The Boy Who Cried Wolf who nobody trusts. Most of time test data is the main problem. If test data issue makes a test case impossible to be stable, please skip that case.
@@ -74,9 +80,9 @@ A good test case could be Stable (liable), Small and Straightforward.
 
 10 Test Points in Test Cases | Failed Test Cases | Pass Rate
 --- | --- | ---
-All in One | `X` | 0% (What is wrong?)
-One per One | `X`	V	V	V	V	V	V	V	V	V | 90% (The wrong parts are clear, but there are so many test cases to maintained)
-Grouped Relatively | `X`	V	V | 67% (Relieve the pain by grouping test points into relative test cases)
+All in One | ✖ | 0% (What is wrong?)
+One per One | ✖	✔	✔	✔	✔	✔	✔	✔	✔	✔ | 90% (The wrong parts are clear, but there are so many test cases to maintained)
+Grouped Relatively | ✖	✔	✔ | 67% (Relieve the pain by grouping test points into relative test cases)
 
 **Straightforward**: Idealy there is no if-else branch in a test case. If it has, please divide it into 2 test cases. The shape of a test case is straight line (I), not if-else tree (Y), not loop circle (O). We can see a serial of steps clearly: step 1, step 2, step 3, ... **There should be nothing ambiguous**. See examples below:
 
@@ -107,8 +113,7 @@ Grouped Relatively | `X`	V	V | 67% (Relieve the pain by grouping test points int
 &emsp;&emsp;&emsp;&emsp;**Step 4**: wait `until` the result is changed  
 &emsp;&emsp;**Postcondition**: the result box will be `as expected` ("Bonjour Dolores", "Bonjour Arnold", or "Tout arrive pour une raison")  
 
-**[Test Types]**
-
+> ### Test Types
 **Unit Testing** vs **Integration Testing** (Manual Testing, Automation Testing)
 
 Comparing to atom of ordinary matter, **method (function)** is the small constituent **unit of software system**, so unit testing about methods. **Unit testing** is **white-box testing** where we can see the implement details of how it works: varibles, operations, branch flow and loop flow. Usually the quality of unit testing is mearused by **code line coverage** and **branch coverage**, but actually how many **assertions** based on funcitons are more important. Theorially Unit tests can go through all lines of code (code line coverage 100%) and all branches (branch coverage 100%), but have no any assertions (test points 0%). All those tests are always green, they are rubbish.
